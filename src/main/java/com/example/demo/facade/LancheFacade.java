@@ -2,8 +2,6 @@ package com.example.demo.facade;
 
 import com.example.demo.applications.LancheApplication;
 import com.example.demo.entities.Lanche;
-import com.example.demo.repositories.LancheRepository;
-
 import java.util.List;
 
 public class LancheFacade {
@@ -28,4 +26,13 @@ public class LancheFacade {
     public double calcularLanche(Lanche lanche, int quantidade) {
         return this.lancheApplication.calcularLanche(lanche, quantidade);
     }
+
+    public void excluir(int codigo, Lanche lanche) {
+        this.lancheApplication.excluirLanche(codigo, lanche);
+    }
+
+    public void atualizar(int codigo, Lanche lanche, String nome, double preco, String imagem) {
+        this.lancheApplication.atualizarLanche(codigo, lanche, nome, preco, imagem);
+    }
+
 }

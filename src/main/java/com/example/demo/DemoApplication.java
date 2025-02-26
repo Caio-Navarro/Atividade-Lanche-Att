@@ -5,7 +5,6 @@ import com.example.demo.entities.Lanche;
 import com.example.demo.facade.LancheFacade;
 import com.example.demo.repositories.LancheRepository;
 import com.example.demo.services.LancheService;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
@@ -35,7 +34,9 @@ public class DemoApplication {
                     1 - Cadastrar lanche
                     2 - Listar lanches
                     3 - Comprar lanche
-                    4 - Sair""");
+                    4 - Excluir lanche
+                    5 - Atualizar lanche
+                    6 - Sair""");
             int op = Integer.parseInt(System.console().readLine());
             switch (op) {
                 case 1 -> {
@@ -53,8 +54,9 @@ public class DemoApplication {
                     System.out.println("--------------------------------------\n CÓDIGO\tNOME\t\tPRECO\n--------------------------------------");
                     List<Lanche> lanches = lancheFacade.buscar();
                     for (Lanche l : lanches) {
-                        System.out.println(l.getCodigo() + "\t\t" + l.getNome() + "\t\t" + l.getPreco() + "\n");
+                        System.out.println(l.getCodigo() + "\t\t" + l.getNome() + "\t\t" + l.getPreco() + "\n" + l.getImagem());
                     }
+
                 }
                 case 3 -> {
                     System.out.println("Digite o código do lanche:");
@@ -66,7 +68,42 @@ public class DemoApplication {
                     String total = String.format("%.2f", lancheFacade.calcularLanche(lanche, qtd));
                     System.out.println("Total: R$ " + total);
                 }
-                case 4 -> quit = true;
+                case 4 ->{
+                    System.out.println("Digite o código do lanche:");
+                    int cod = Integer.parseInt(System.console().readLine());
+
+                    Lanche lanche = lancheFacade.buscarPorCodigo(cod);
+
+                    if (lanche != null) {
+                        lancheFacade.excluir(cod, lanche);
+                        System.out.println("Lanche excluido com sucesso\n");
+                    }else{
+                        System.out.println("Lanche não encontrado!");
+                    }
+                }
+                case 5 ->{
+                    System.out.println("Digite o código do lanche:");
+                    int cod = Integer.parseInt(System.console().readLine());
+
+                    Lanche lanche = lancheFacade.buscarPorCodigo(cod);
+
+                    if (lanche != null) {
+                        System.out.println("Informe o novo nome: ");
+                        String novoNome = System.console().readLine();
+
+                        System.out.println("Informe o novo preço: ");
+                        double novoPreco = Double.parseDouble(System.console().readLine());
+
+                        System.out.println("Informe o caminho da nova imagem: ");
+                        String novaImagem = System.console().readLine();
+
+                        lancheFacade.atualizar(cod, lanche, novoNome, novoPreco, novaImagem);
+                        System.out.println("Lanche atualizado com sucesso\n");
+                    }else{
+                        System.out.println("Lanche não encontrado!");
+                    }
+                }
+                case 6 -> quit = true;
             }
         }
     }

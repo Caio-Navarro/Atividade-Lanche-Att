@@ -33,4 +33,14 @@ public class LancheApplication {
     public double calcularLanche(Lanche lanche, int quantidade) {
         return lanche.getPreco() * quantidade;
     }
+
+    public void excluirLanche(int codigo, Lanche lanche) {
+        lancheService.excluir(codigo, lanche);
+        lancheRepository.remover(codigo);
+    }
+
+    public void atualizarLanche(int codigo, Lanche lanche, String nome, double preco, String imagem) {
+        lancheService.atualizar(codigo, lanche);
+        lancheRepository.atualizar(codigo, nome, preco, imagem);
+    }
 }

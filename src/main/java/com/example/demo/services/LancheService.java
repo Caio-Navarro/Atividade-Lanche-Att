@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class LancheService {
-    private String filePath = "C:\\Users\\aluno.fsa\\ImagensLancheDestino\\";
+    private String filePath = "C:\\Users\\Admin\\Downloads\\Aula3Jefte";
 
     public Lanche getById(int id) {
         return null;
@@ -48,11 +48,28 @@ public class LancheService {
         return false;
     }
 
-    public void excluir(int id, Lanche Lanche) {
+    public void excluir(int codigo, Lanche lanche) {
+        Path path = Paths.get(lanche.getImagem());
 
+        try{
+            if(Files.exists(path)){
+                Files.delete(path);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
-    public void atualizar(int id, Lanche Lanche) {
+    public void atualizar(int id, Lanche lanche) {
+        Path path = Paths.get(lanche.getImagem());
 
+        try{
+            if(Files.exists(path)){
+                Files.delete(path);
+                lanche.setImagem(path.toString());
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
