@@ -62,4 +62,11 @@ public class LancheController {
         lancheFacade.excluir(idLanche);
     }
 
+    @PutMapping("/comprar/{idLanche}/{quantidade}")
+    public String comprar(@PathVariable int idLanche, @PathVariable int quantidade) {
+        Lanche lanche = lancheFacade.buscarPorCodigo(idLanche);
+
+        return  "Número de lanches: " + quantidade + "\nValor total: R$" + lancheFacade.calcularLanche(lanche, quantidade);
+    }
+
 }
