@@ -75,7 +75,7 @@ public class DemoApplication {
                     Lanche lanche = lancheFacade.buscarPorCodigo(cod);
 
                     if (lanche != null) {
-                        lancheFacade.excluir(cod, lanche);
+                        lancheFacade.excluir(cod);
                         System.out.println("Lanche excluido com sucesso\n");
                     }else{
                         System.out.println("Lanche não encontrado!");
@@ -97,7 +97,7 @@ public class DemoApplication {
                         System.out.println("Informe o caminho da nova imagem: ");
                         String novaImagem = System.console().readLine();
 
-                        lancheFacade.atualizar(cod, lanche, novoNome, novoPreco, novaImagem);
+                        lancheFacade.atualizar(cod, lanche);
                         System.out.println("Lanche atualizado com sucesso\n");
                     }else{
                         System.out.println("Lanche não encontrado!");

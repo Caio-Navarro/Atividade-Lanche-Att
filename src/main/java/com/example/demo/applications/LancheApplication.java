@@ -34,13 +34,13 @@ public class LancheApplication {
         return lanche.getPreco() * quantidade;
     }
 
-    public void excluirLanche(int codigo, Lanche lanche) {
-        lancheService.excluir(codigo, lanche);
+    public void excluirLanche(int codigo) {
+        lancheService.excluir(codigo);
         lancheRepository.remover(codigo);
     }
 
-    public void atualizarLanche(int codigo, Lanche lanche, String nome, double preco, String imagem) {
+    public void atualizarLanche(int codigo, Lanche lanche) {
         lancheService.atualizar(codigo, lanche);
-        lancheRepository.atualizar(codigo, nome, preco, imagem);
+        lancheRepository.atualizar(codigo, lanche);
     }
 }

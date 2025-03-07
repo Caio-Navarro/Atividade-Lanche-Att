@@ -30,11 +30,11 @@ public class LancheRepository {
         lanches.removeIf(p -> p.getCodigo() == codigo);
     }
 
-    public void atualizar(int codigo, String nome, double preco, String imagem) {
-        for (Lanche lanche : lanches) {
-            lanche.setNome(nome);
-            lanche.setPreco(preco);
-            lanche.setImagem(imagem);
-        }
+    public void atualizar(int codigo, Lanche lanche) {
+        Lanche LancheInMemory = this.buscarPorCodigo(codigo);
+
+        LancheInMemory.setNome(lanche.getNome());
+        LancheInMemory.setImagem(lanche.getImagem());
+        LancheInMemory.setPreco(lanche.getPreco());
     }
 }

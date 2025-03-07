@@ -11,8 +11,9 @@ public class LancheFacade {
         this.lancheApplication = lancheApplication;
     }
 
-    public void cadastrar(Lanche lanche) {
+    public Lanche cadastrar(Lanche lanche) {
         this.lancheApplication.cadastrar(lanche);
+        return lanche;
     }
 
     public List<Lanche> buscar() {
@@ -27,12 +28,13 @@ public class LancheFacade {
         return this.lancheApplication.calcularLanche(lanche, quantidade);
     }
 
-    public void excluir(int codigo, Lanche lanche) {
-        this.lancheApplication.excluirLanche(codigo, lanche);
+    public void excluir(int codigo) {
+        this.lancheApplication.excluirLanche(codigo);
     }
 
-    public void atualizar(int codigo, Lanche lanche, String nome, double preco, String imagem) {
-        this.lancheApplication.atualizarLanche(codigo, lanche, nome, preco, imagem);
+    public Lanche atualizar(int codigo, Lanche lanche) {
+        this.lancheApplication.atualizarLanche(codigo, lanche);
+        return lanche;
     }
 
 }

@@ -48,15 +48,19 @@ public class LancheService {
         return false;
     }
 
-    public void excluir(int codigo, Lanche lanche) {
-        Path path = Paths.get(lanche.getImagem());
+    public void excluir(int id) {
+        Lanche lanche = getById(id);
 
-        try{
-            if(Files.exists(path)){
-                Files.delete(path);
+        if (lanche != null) {
+            Path path = Paths.get(lanche.getImagem());
+
+            try {
+                if (Files.exists(path)) {
+                    Files.delete(path);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }catch (IOException e){
-            e.printStackTrace();
         }
     }
 
